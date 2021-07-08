@@ -15,7 +15,7 @@ RootModule = 'Test-DNSRecord.psm1'
 ModuleVersion = '1.0.0'
 
 # Supported PSEditions
-# CompatiblePSEditions = 'Desktop','Core'
+# CompatiblePSEditions = ''
 
 # ID used to uniquely identify this module
 GUID = '8d70ec71-b4e7-4d59-a085-441bb278056e'
@@ -33,7 +33,7 @@ Copyright = '(c) 2021 Luke Leigh. All rights reserved.'
 Description = 'A simple wrapper for the function Resolve-DNSName to perform DNS queries against a pre-defined list of public DNS Servers and a dynamic list of internal DNS Servers'
 
 # Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '5.1'
+# PowerShellVersion = ''
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
@@ -129,4 +129,3 @@ PrivateData = @{
 # DefaultCommandPrefix = ''
 
 }
-

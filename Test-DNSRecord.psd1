@@ -15,7 +15,7 @@ RootModule = 'Test-DNSRecord.psm1'
 ModuleVersion = '1.0.0'
 
 # Supported PSEditions
-# CompatiblePSEditions = @()
+CompatiblePSEditions = 'Desktop','Core'
 
 # ID used to uniquely identify this module
 GUID = '8d70ec71-b4e7-4d59-a085-441bb278056e'
@@ -24,7 +24,7 @@ GUID = '8d70ec71-b4e7-4d59-a085-441bb278056e'
 Author = 'Luke Leigh'
 
 # Company or vendor of this module
-CompanyName = ''
+CompanyName = 'Unknown'
 
 # Copyright statement for this module
 Copyright = '(c) 2021 Luke Leigh. All rights reserved.'
@@ -33,7 +33,7 @@ Copyright = '(c) 2021 Luke Leigh. All rights reserved.'
 Description = 'A simple wrapper for the function Resolve-DNSName to perform DNS queries against a pre-defined list of public DNS Servers and a dynamic list of internal DNS Servers'
 
 # Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '5.0'
+PowerShellVersion = '5.1'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
@@ -95,13 +95,13 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags = @('DNS','Test')
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'https://github.com/BanterBoy/Test-DNSRecord/blob/main/LICENSE'
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/BanterBoy/Test-DNSRecord'
 
         # A URL to an icon representing this module.
         # IconUri = ''

@@ -15,7 +15,7 @@ RootModule = 'Test-DNSRecord.psm1'
 ModuleVersion = '1.0.0'
 
 # Supported PSEditions
-CompatiblePSEditions = 'Desktop','Core'
+# CompatiblePSEditions = 'Desktop','Core'
 
 # ID used to uniquely identify this module
 GUID = '8d70ec71-b4e7-4d59-a085-441bb278056e'

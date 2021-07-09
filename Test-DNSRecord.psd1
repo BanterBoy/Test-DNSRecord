@@ -15,7 +15,7 @@ RootModule = 'Test-DNSRecord.psm1'
 ModuleVersion = '1.0.0'
 
 # Supported PSEditions
-# CompatiblePSEditions = ''
+# CompatiblePSEditions = @()
 
 # ID used to uniquely identify this module
 GUID = '8d70ec71-b4e7-4d59-a085-441bb278056e'
@@ -69,7 +69,7 @@ Description = 'A simple wrapper for the function Resolve-DNSName to perform DNS 
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = '*'
+FunctionsToExport = 'Test-DNSRecord'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = '*'
@@ -95,7 +95,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = @('DNS','Test')
+        Tags = 'DNS','Test'
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/BanterBoy/Test-DNSRecord/blob/main/LICENSE'
@@ -120,7 +120,7 @@ PrivateData = @{
 
     } # End of PSData hashtable
 
-} # End of PrivateData hashtable
+ } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
 # HelpInfoURI = ''
@@ -129,3 +129,4 @@ PrivateData = @{
 # DefaultCommandPrefix = ''
 
 }
+

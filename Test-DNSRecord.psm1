@@ -207,8 +207,8 @@ function Test-DNSRecord {
             CloudflareSecondary    = "1.0.0.1"
             CleanBrowsingPrimary   = "185.228.168.9"
             CleanBrowsingSecondary = "185.228.169.9"
-            AlternateDNSPrimary    = "198.101.242.72"
-            AlternateDNSSecondary  = "23.253.163.53"
+            AlternateDNSPrimary    = "76.76.19.19"
+            AlternateDNSSecondary  = "76.223.122.150"
             AdGuardDNSPrimary      = "94.140.14.14"
             AdGuardDNSSecondary    = "94.140.15.15"
         }

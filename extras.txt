@@ -1,0 +1,120 @@
+DNSWATCHPrimary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.DNSWATCHPrimary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+DNSWATCHSecondary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.DNSWATCHSecondary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+ComodoSecureDNSPrimary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.ComodoSecureDNSPrimary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+ComodoSecureDNSSecondary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.ComodoSecureDNSSecondary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+CenturyLinkLevel3Primary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.CenturyLinkLevel3Primary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+CenturyLinkLevel3Secondary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.CenturyLinkLevel3Secondary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+SafeDNSPrimary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.SafeDNSPrimary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+SafeDNSSecondary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.SafeDNSSecondary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+OpenNICPrimary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.OpenNICPrimary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+OpenNICSecondary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.OpenNICSecondary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+DynPrimary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.DynPrimary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+DynSecondary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.DynSecondary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+FreeDNSPrimary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.FreeDNSPrimary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+FreeDNSSecondary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.FreeDNSSecondary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+YandexDNSPrimary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.YandexDNSPrimary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+YandexDNSSecondary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.YandexDNSSecondary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+UncensoredDNSPrimary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.UncensoredDNSPrimary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+UncensoredDNSSecondary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.UncensoredDNSSecondary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+HurricaneElectric {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.HurricaneElectric -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+puntCAT {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.puntCAT -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+NeustarPrimary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.NeustarPrimary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+NeustarSecondary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.NeustarSecondary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+FourthEstatePrimary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.FourthEstatePrimary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}
+FourthEstateSecondary {
+	$result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.FourthEstateSecondary -ErrorAction Stop
+	Write-Verbose -Message "Checking Google Primary..."
+	Write-Output $result
+}

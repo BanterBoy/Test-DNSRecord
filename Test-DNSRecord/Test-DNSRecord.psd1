@@ -9,7 +9,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = '$PSScriptRoot\Test-DNSRecord.psm1'
+RootModule = '.\Test-DNSRecord.psm1'
 
 # Version number of this module.
 ModuleVersion = '1.0.1'
@@ -51,7 +51,7 @@ Description = 'A simple wrapper for the function Resolve-DNSName to perform DNS 
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-# RequiredModules = @()
+RequiredModules = @('DnsClient')
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
@@ -72,13 +72,13 @@ Description = 'A simple wrapper for the function Resolve-DNSName to perform DNS 
 FunctionsToExport = 'Test-DNSRecord'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = '*'
+# CmdletsToExport = '*'
 
 # Variables to export from this module
-VariablesToExport = '*'
+# VariablesToExport = '*'
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport = '*'
+# AliasesToExport = '*'
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()
@@ -107,7 +107,7 @@ PrivateData = @{
         # IconUri = ''
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'Updated using PowerShell Classes'
+        ReleaseNotes = 'Code has been updated and is now using PowerShell Classes. Results are much quicker and the list of DNS Servers has been updated.'
 
         # Prerelease string of this module
         # Prerelease = ''

@@ -170,8 +170,8 @@
 #>
 
 function Test-DNSRecord {
-    [CmdletBinding()]
-
+    [CmdletBinding(SupportsShouldProcess = $true,
+        ConfirmImpact = 'Medium')]
     param (
         [Parameter(Mandatory = $True,
             HelpMessage = "Please enter DNS record name to be tested. Expected format is either a fully qualified domain name (FQDN) or an IP address (IPv4 or IPv6) e.g. example.com or 151.101.0.81)",
@@ -179,14 +179,12 @@ function Test-DNSRecord {
             ValueFromPipelineByPropertyName = $True)]
         [string[]]
         $recordName,
-
         [Parameter(Mandatory = $false,
             HelpMessage = "Please select DNS record type. Undefined, this parameter defaults to 'A' record lookups. You can tab complete through the list. A complete list of DNS Record Types is available.)",
             ValueFromPipeline = $false,
             ValueFromPipelineByPropertyName = $True)]
         [ValidateSet('A', 'AAAA', 'ALIAS', 'CNAME', 'MX', 'NS', 'PTR', 'SOA', 'SRV', 'TXT', 'DNSKEY', 'DS', 'NSEC', 'NSEC3', 'NSEC3PARAM', 'RRSIG', 'AFSDB', 'ATMA', 'CAA', 'CERT', 'DHCID', 'DNAME', 'HINFO', 'ISDN', 'LOC', 'MB', 'MG', 'MINFO', 'MR', 'NAPTR', 'NSAP', 'RP', 'RT', 'TLSA', 'X25')]
         $Type = 'A',
-
         [Parameter(Mandatory = $false,
             HelpMessage = "Please select the DNS server to perform the DNS query against. This is a tab complete list. Please check the help for more details. Get-Help Test-DNSRecord -Parameter DNSProvider)",
             ValueFromPipeline = $false,
@@ -196,288 +194,139 @@ function Test-DNSRecord {
     )
 
     begin {
-        $DNSservers = [ordered]@{
-            GooglePrimary              = "8.8.8.8"
-            GoogleSecondary            = "8.8.4.4"
-            Quad9Primary               = "9.9.9.9"
-            Quad9Secondary             = "149.112.112.112"
-            OpenDNSHomePrimary         = "208.67.222.222"
-            OpenDNSHomeSecondary       = "208.67.220.220"
-            CloudflarePrimary          = "1.1.1.1"
-            CloudflareSecondary        = "1.0.0.1"
-            CleanBrowsingPrimary       = "185.228.168.9"
-            CleanBrowsingSecondary     = "185.228.169.9"
-            AlternateDNSPrimary        = "76.76.19.19"
-            AlternateDNSSecondary      = "76.223.122.150"
-            AdGuardDNSPrimary          = "94.140.14.14"
-            AdGuardDNSSecondary        = "94.140.15.15"
-            DNSWATCHPrimary            = "84.200.69.80"
-            DNSWATCHSecondary          = "84.200.70.40"
-            ComodoSecureDNSPrimary     = "8.26.56.26"
-            ComodoSecureDNSSecondary   = "8.20.247.20"
-            CenturyLinkLevel3Primary   = "205.171.3.66"
-            CenturyLinkLevel3Secondary = "205.171.202.166"
-            SafeDNSPrimary             = "195.46.39.39"
-            SafeDNSSecondary           = "195.46.39.40"
-            OpenNICPrimary             = "172.98.193.42"
-            OpenNICSecondary           = "66.70.228.164"
-            DynPrimary                 = "216.146.35.35"
-            DynSecondary               = "216.146.36.36"
-            FreeDNSPrimary             = "45.33.97.5"
-            FreeDNSSecondary           = "37.235.1.177"
-            YandexDNSPrimary           = "77.88.8.8"
-            YandexDNSSecondary         = "77.88.8.1"
-            UncensoredDNSPrimary       = "91.239.100.100"
-            UncensoredDNSSecondary     = "89.233.43.71"
-            HurricaneElectric          = "74.82.42.42"
-            puntCAT                    = "109.69.8.51"
-            NeustarPrimary             = "64.6.64.6"
-            NeustarSecondary           = "64.6.65.6"
-            FourthEstatePrimary        = "45.77.165.194"
-            FourthEstateSecondary      = "45.32.36.36"
-        }
     }
 
     process {
-        foreach ($record in $recordName) {
-            try {
-                switch ($DNSProvider) {
-                    GooglePrimary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.GooglePrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    GoogleSecondary { 
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.GoogleSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Secondary..."
-                        Write-Output $result
-                    }
-                    Quad9Primary { 
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.Quad9Primary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Quad9 Primary..."
-                        Write-Output $result
-                    }
-                    Quad9Secondary { 
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.Quad9Secondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Quad9 Secondary..."
-                        Write-Output $result
-                    }
-                    OpenDNSHomePrimary { 
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.OpenDNSHomePrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking OpenDNSHome Primary..."
-                        Write-Output $result
-                    }
-                    OpenDNSHomeSecondary { 
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.OpenDNSHomeSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking OpenDNSHome Secondary..."
-                        Write-Output $result
-                    }
-                    CloudflarePrimary { 
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.CloudflarePrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Cloudflare Primary..."
-                        Write-Output $result
-                    }
-                    CloudflareSecondary { 
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.CloudflareSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Cloudflare Secondary..."
-                        Write-Output $result
-                    }
-                    CleanBrowsingPrimary { 
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.CleanBrowsingPrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking CleanBrowsing Primary..."
-                        Write-Output $result
-                    }
-                    CleanBrowsingSecondary { 
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.CleanBrowsingSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking CleanBrowsing Secondary..."
-                        Write-Output $result
-                    }
-                    AlternateDNSPrimary { 
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.AlternateDNSPrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking AlternateDNS Primary..."
-                        Write-Output $result
-                    }
-                    AlternateDNSSecondary { 
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.AlternateDNSSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking AlternateDNS Secondary..."
-                        Write-Output $result
-                    }
-                    AdGuardDNSPrimary { 
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.AdGuardDNSPrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking AdGuardDNS Primary..."
-                        Write-Output $result
-                    }
-                    AdGuardDNSSecondary { 
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.AdGuardDNSSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking AdGuardDNS Secondary..."
-                        Write-Output $result
-                    }
-                    DNSWATCHPrimary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.DNSWATCHPrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking DNS.WATCH Primary..."
-                        Write-Output $result
-                    }
-                    DNSWATCHSecondary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.DNSWATCHSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking DNS.WATCH Secondary..."
-                        Write-Output $result
-                    }
-                    ComodoSecureDNSPrimary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.ComodoSecureDNSPrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Comodo Secure DNS Primary..."
-                        Write-Output $result
-                    }
-                    ComodoSecureDNSSecondary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.ComodoSecureDNSSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Comodo Secure DNS Secondary..."
-                        Write-Output $result
-                    }
-                    CenturyLinkLevel3Primary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.CenturyLinkLevel3Primary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Century Link (Level3) Primary..."
-                        Write-Output $result
-                    }
-                    CenturyLinkLevel3Secondary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.CenturyLinkLevel3Secondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Century Link (Level3) Secondary..."
-                        Write-Output $result
-                    }
-                    SafeDNSPrimary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.SafeDNSPrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    SafeDNSSecondary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.SafeDNSSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    OpenNICPrimary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.OpenNICPrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    OpenNICSecondary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.OpenNICSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    DynPrimary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.DynPrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    DynSecondary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.DynSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    FreeDNSPrimary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.FreeDNSPrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    FreeDNSSecondary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.FreeDNSSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    YandexDNSPrimary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.YandexDNSPrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    YandexDNSSecondary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.YandexDNSSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    UncensoredDNSPrimary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.UncensoredDNSPrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    UncensoredDNSSecondary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.UncensoredDNSSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    HurricaneElectric {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.HurricaneElectric -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    puntCAT {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.puntCAT -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    NeustarPrimary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.NeustarPrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    NeustarSecondary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.NeustarSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    FourthEstatePrimary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.FourthEstatePrimary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    FourthEstateSecondary {
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.FourthEstateSecondary -ErrorAction Stop
-                        Write-Verbose -Message "Checking Google Primary..."
-                        Write-Output $result
-                    }
-                    InternalDNSserver {
-                        $internalDNS = (Get-ADDomainController -Filter { Name -like "*" }).HostName
-                        foreach ($PSItem in $internalDNS) {
-                            $result = Resolve-DnsName -Name $record -Type $Type -Server $PSItem -ErrorAction Stop
-                            Write-Verbose -Message "Checking $PSItem..."
-                            Write-Output $result
-                        }
-                    }
-                    DNSZoneNameServers {
-                        $query = Resolve-DnsName -Name $record -Type NS | Where-Object NameHost
-                        $GlueServers = $query.NameHost
-                        foreach ($PSItem in $GlueServers) {
-                            $result = Resolve-DnsName -Name $record -Type $Type -Server $PSItem -ErrorAction Stop
-                            Write-Verbose -Message "Checking $PSItem..."
-                            Write-Output $result
-                        }
-                    }
-                    AllPublic {
-                        $Servers = $DNSservers.Values
-                        foreach ($server in $Servers) {
-                            $result = Resolve-DnsName -Name $record -Type $Type -Server $server -ErrorAction Stop
-                            Write-Verbose -Message "Checking $server ..."
-                            Write-Output $result
-                        }
-                    }
-                    Default {
-                        Write-Verbose -Message "Checking Google Primary..."
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.GooglePrimary -ErrorAction Stop
-                        Write-Output $result
-                        Write-Verbose -Message "Checking Google Secondary..."
-                        $result = Resolve-DnsName -Name $record -Type $Type -Server $DNSservers.GoogleSecondary -ErrorAction Stop
-                        Write-Output $result
-                    }
+        if ($PSCmdlet.ShouldProcess("$recordName", "Resolve DNS Record")) {
+            foreach ($record in $recordName) {
+                try {
+                    $server = [DnsServer]::new($DNSProvider, $record, $Type)
+                    Write-Output $server.Resolve()
+                }
+                catch {
+                    Write-Error "An error occurred:"
+                    Write-Error $_
                 }
             }
-            catch [System.Exception] {
-                Write-Warning "$record not found!"
-            }
-            catch {
-                Write-Warning "Catch all"
+
+            Class DnsServer {
+                [String]$Id
+                [String]$Record
+                [String]$Type
+
+                $DNSservers = [ordered]@{
+                    GooglePrimary              = "8.8.8.8"
+                    GoogleSecondary            = "8.8.4.4"
+                    Quad9Primary               = "9.9.9.9"
+                    Quad9Secondary             = "149.112.112.112"
+                    OpenDNSHomePrimary         = "208.67.222.222"
+                    OpenDNSHomeSecondary       = "208.67.220.220"
+                    CloudflarePrimary          = "1.1.1.1"
+                    CloudflareSecondary        = "1.0.0.1"
+                    CleanBrowsingPrimary       = "185.228.168.9"
+                    CleanBrowsingSecondary     = "185.228.169.9"
+                    AlternateDNSPrimary        = "76.76.19.19"
+                    AlternateDNSSecondary      = "76.223.122.150"
+                    AdGuardDNSPrimary          = "94.140.14.14"
+                    AdGuardDNSSecondary        = "94.140.15.15"
+                    DNSWATCHPrimary            = "84.200.69.80"
+                    DNSWATCHSecondary          = "84.200.70.40"
+                    ComodoSecureDNSPrimary     = "8.26.56.26"
+                    ComodoSecureDNSSecondary   = "8.20.247.20"
+                    CenturyLinkLevel3Primary   = "205.171.3.66"
+                    CenturyLinkLevel3Secondary = "205.171.202.166"
+                    SafeDNSPrimary             = "195.46.39.39"
+                    SafeDNSSecondary           = "195.46.39.40"
+                    OpenNICPrimary             = "172.98.193.42"
+                    OpenNICSecondary           = "66.70.228.164"
+                    DynPrimary                 = "216.146.35.35"
+                    DynSecondary               = "216.146.36.36"
+                    FreeDNSPrimary             = "45.33.97.5"
+                    FreeDNSSecondary           = "37.235.1.177"
+                    YandexDNSPrimary           = "77.88.8.8"
+                    YandexDNSSecondary         = "77.88.8.1"
+                    UncensoredDNSPrimary       = "91.239.100.100"
+                    UncensoredDNSSecondary     = "89.233.43.71"
+                    HurricaneElectric          = "74.82.42.42"
+                    puntCAT                    = "109.69.8.51"
+                    NeustarPrimary             = "64.6.64.6"
+                    NeustarSecondary           = "64.6.65.6"
+                    FourthEstatePrimary        = "45.77.165.194"
+                    FourthEstateSecondary      = "45.32.36.36"
+                }
+
+                hidden [String]$Ip 
+
+                DnsServer([String]$Id, [String]$Record, [String]$Type) {
+                    $this.Id = $Id
+                    $this.Record = $Record
+                    $this.Type = $Type
+
+                    $this.Ip = $this.DNSservers[$Id]
+                }
+
+                [Object[]] Resolve() {
+                    [Object[]]$result = @()
+
+                    if ([string]::IsNullOrWhiteSpace($this.Id)) {
+                        Write-Verbose -Message "Checking Google Primary..."
+                        $result += Resolve-DnsName -Name $this.Record -Type $this.Type -Server $this.DNSservers.GooglePrimary -ErrorAction Stop
+
+                        Write-Verbose -Message "Checking Google Secondary..."
+                        $result += Resolve-DnsName -Name $this.Record -Type $this.Type -Server $this.DNSservers.GoogleSecondary -ErrorAction Stop
+
+                        return $result
+                    }
+
+                    switch ($this.Id) {
+                        InternalDNSserver {
+                            $internalDNS = (Get-ADDomainController -Filter { Name -like "*" }).HostName
+
+                            foreach ($PSItem in $internalDNS) {
+                                $result += Resolve-DnsName -Name $this.Record -Type $this.Type -Server $PSItem -ErrorAction Stop
+                                Write-Verbose -Message "Checking $PSItem..."
+                            }
+
+                            return $result
+                        }
+                        DNSZoneNameServers {
+                            $query = Resolve-DnsName -Name $this.Record -Type NS | Where-Object NameHost
+                            $GlueServers = $query.NameHost
+
+                            foreach ($PSItem in $GlueServers) {
+                                $result += Resolve-DnsName -Name $this.Record -Type $this.Type -Server $PSItem -ErrorAction Stop
+                                Write-Verbose -Message "Checking $PSItem..."
+                            }
+
+                            return $result
+                        }
+                        AllPublic {
+                            $Servers = $this.DNSservers.Values
+                            foreach ($server in $Servers) {
+                                $result += Resolve-DnsName -Name $this.Record -Type $this.Type -Server $server -ErrorAction Stop
+                                Write-Verbose -Message "Checking $server ..."
+                            }
+
+                            return $result
+                        }
+                    }
+
+                    $result = Resolve-DnsName -Name $this.Record -Type $this.Type -Server $this.Ip -ErrorAction Stop
+                    Write-Verbose -Message "Checking $($this.Id)..."
+
+                    return $result
+                }
             }
         }
     }
-    end {
 
+    end {
     }
+
 }
 
-Test-DNSRecord -recordName me.lukeleigh.com -Type A -DNSProvider AllPublic
+# Test-DNSRecord -recordName bbc.co.uk -Type A -DNSProvider GooglePrimary
+
+# Test-DNSRecord -recordName bbc.co.uk -Type CNAME -DNSProvider GoogleSecondary
+
+# Test-DNSRecord -recordName bbc.co.uk -Type CNAME -DNSProvider Quad9Primary

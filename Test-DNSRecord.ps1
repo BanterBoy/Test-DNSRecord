@@ -189,7 +189,7 @@ function Test-DNSRecord {
             HelpMessage = "Please select the DNS server to perform the DNS query against. This is a tab complete list. Please check the help for more details. Get-Help Test-DNSRecord -Parameter DNSProvider)",
             ValueFromPipeline = $false,
             ValueFromPipelineByPropertyName = $True)]
-        [ValidateSet ('GooglePrimary', 'GoogleSecondary', 'Quad9Primary', 'Quad9Secondary', 'OpenDNSHomePrimary', 'OpenDNSHomeSecondary', 'CloudflarePrimary', 'CloudflareSecondary', 'CleanBrowsingPrimary', 'CleanBrowsingSecondary', 'AlternateDNSPrimary', 'AlternateDNSSecondary', 'AdGuardDNSPrimary', 'AdGuardDNSSecondary', 'InternalDNSserver', 'DNSZoneNameServers', 'AllPublic')]
+        [ValidateSet ('GooglePrimary', 'GoogleSecondary', 'Quad9Primary', 'Quad9Secondary', 'OpenDNSHomePrimary', 'OpenDNSHomeSecondary', 'CloudflarePrimary', 'CloudflareSecondary', 'CleanBrowsingPrimary', 'CleanBrowsingSecondary', 'AlternateDNSPrimary', 'AlternateDNSSecondary', 'AdGuardDNSPrimary', 'AdGuardDNSSecondary', 'DNSWATCHPrimary', 'DNSWATCHSecondary', 'ComodoSecureDNSPrimary', 'ComodoSecureDNSSecondary', 'CenturyLinkLevel3Primary', 'CenturyLinkLevel3Secondary', 'SafeDNSPrimary', 'SafeDNSSecondary', 'OpenNICPrimary', 'OpenNICSecondary', 'DynPrimary', 'DynSecondary', 'FreeDNSPrimary', 'FreeDNSSecondary', 'YandexDNSPrimary', 'YandexDNSSecondary', 'UncensoredDNSPrimary', 'UncensoredDNSSecondary', 'HurricaneElectric', 'puntCAT', 'NeustarPrimary', 'NeustarSecondary', 'FourthEstatePrimary', 'FourthEstateSecondary', 'InternalDNSserver', 'DNSZoneNameServers', 'AllPublic')]
         $DNSProvider
     )
 
